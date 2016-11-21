@@ -111,9 +111,20 @@ $(function() {
   });
 
   describe('New Feed Selection', function() {
-    /* TODO: Write a test that ensures when a new feed is loaded
-     * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
-     */
+    var originalFirstEntry,
+        container = $('.feed');
+
+    // the menu is visible by the click in parent level, now we click it once more time
+    beforeEach(function(done) {
+      originalFirstEntry = container.find('.entry')[0];
+      loadFeed(0, function() {
+        done();
+      });
+    });
+
+    it('content actually changes', function(done) {
+      expect(container.find('.entry')[0]).not.toBe(originalFirstEntry);
+      done();
+    });
   });
 }());
