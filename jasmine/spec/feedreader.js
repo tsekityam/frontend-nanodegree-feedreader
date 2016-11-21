@@ -64,33 +64,27 @@ $(function() {
       it('menu changes visibility when the menu icon is clicked', function(done) {
         expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().left).toBe(0);  // ensures the left border of the side menu is at 0, which means the menu is visible.
         done();
+      });
+    });
 
+    describe("Menu icon click event (menu visible)", function() {
+
+      // the menu is visible by the click in previous test suite, now we click it once more time,
+      // see if the menu will be hidden again or not
+      beforeEach(function(done) {
         document.getElementsByClassName('menu-icon-link')[0].click();
+        // we wait 0.22s before calling done().
+        // Although the transition should be finished in 0.2s,
+        // however, there may be a delay, so we give some flexibility to it.
         setTimeout(function () {
           done();
         }, 220);
-
       });
 
-      describe("Menu icon click event (menu visible)", function() {
-
-        // the menu is visible by the click in parent level, now we click it once more time
-        beforeEach(function(done) {
-          document.getElementsByClassName('menu-icon-link')[0].click();
-          // we wait 0.22s before calling done().
-          // Although the transition should be finished in 0.2s,
-          // however, there may be a delay, so we give some flexibility to it.
-          setTimeout(function () {
-            done();
-          }, 220);
-        });
-
-        it('menu changes visibility when the menu icon is clicked', function(done) {
-          expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the left border of the side menu is at 0, which means the menu is visible.
-          done();
-        });
+      it('menu changes visibility when the menu icon is clicked', function(done) {
+        expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the left border of the side menu is at 0, which means the menu is visible.
+        done();
       });
-
     });
   });
 
@@ -107,7 +101,6 @@ $(function() {
        expect($('.feed').find('.entry').size()).toBeGreaterThan(0);
        done();
      });
-
   });
 
   describe('New Feed Selection', function() {
