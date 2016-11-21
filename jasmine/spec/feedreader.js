@@ -35,10 +35,12 @@ $(function() {
          });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+         it('all feeds has name', function() {
+           allFeeds.forEach(function(feed) {  // loops through each feed in the allFeeds object
+             expect(feed.name).toBeDefined();  // ensures it has a name defined
+             expect(feed.name.length).toBeGreaterThan(0);  // ensures that the name is not empty
+           });
+         });
     });
 
 
