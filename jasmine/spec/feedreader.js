@@ -46,7 +46,8 @@ $(function() {
 
   describe('The menu', function() {
     it('menu is hidden by default', function() {
-      expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the right border of the side menu is at 0, which means the menu is not visible.
+      // ensures the right border of the side menu is at 0, which means the menu is not visible.
+      expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);
     });
 
     describe("Menu icon click event (menu hidden)", function() {
@@ -65,7 +66,8 @@ $(function() {
       });
 
       it('menu changes visibility when the menu icon is clicked', function(done) {
-        expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().left).toBe(0);  // ensures the left border of the side menu is at 0, which means the menu is visible.
+        // ensures the left border of the side menu is at 0, which means the menu is visible.
+        expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().left).toBe(0);
         done();
       });
     });
@@ -89,7 +91,8 @@ $(function() {
 
       it('menu changes visibility when the menu icon is clicked', function(done) {
         var $slideMenu = $('.slide-menu');
-        if ($slideMenu.size() > 0) {  // ensures the left border of the side menu is at 0, which means the menu is visible.
+        if ($slideMenu.size() > 0) {
+           // ensures the left border of the side menu is at 0, which means the menu is visible.
           expect($slideMenu[0].getBoundingClientRect().right).toBe(0);
         }
         done();
