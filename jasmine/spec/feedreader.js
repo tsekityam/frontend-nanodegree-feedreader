@@ -52,16 +52,16 @@ $(function() {
     describe("Menu icon click event (menu hidden)", function() {
 
       beforeEach(function(done) {
-        // we wait 0.22s before calling done().
         var $menuIconLink = $('.menu-icon-link');
         if ($menuIconLink.size() > 0) {
           $menuIconLink[0].click();
         }
+        // we wait 0.3s before calling done().
         // Although the transition should be finished in 0.2s,
         // however, there may be a delay, so we give some flexibility to it.
         setTimeout(function () {
           done();
-        }, 220);
+        }, 300);
       });
 
       it('menu changes visibility when the menu icon is clicked', function(done) {
@@ -75,16 +75,16 @@ $(function() {
       // the menu is visible by the click in previous test suite, now we click it once more time,
       // see if the menu will be hidden again or not
       beforeEach(function(done) {
-        // we wait 0.22s before calling done().
         var $menuIconLink = $('.menu-icon-link');
         if ($menuIconLink.size() > 0) {
           $menuIconLink[0].click();
         }
+        // we wait 0.3s before calling done().
         // Although the transition should be finished in 0.2s,
         // however, there may be a delay, so we give some flexibility to it.
         setTimeout(function () {
           done();
-        }, 220);
+        }, 300);
       });
 
       it('menu changes visibility when the menu icon is clicked', function(done) {
