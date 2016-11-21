@@ -95,12 +95,18 @@ $(function() {
   });
 
   describe('Initial Entries', function() {
-    /* TODO: Write a test that ensures when the loadFeed
-     * function is called and completes its work, there is at least
-     * a single .entry element within the .feed container.
-     * Remember, loadFeed() is asynchronous so this test will require
-     * the use of Jasmine's beforeEach and asynchronous done() function.
-     */
+
+     // the menu is visible by the click in parent level, now we click it once more time
+     beforeEach(function(done) {
+       loadFeed(0, function() {
+         done();
+       });
+     });
+
+     it('at least a single .entry element within the .feed container', function(done) {
+       expect($('.feed').find('.entry').size()).toBeGreaterThan(0);
+       done();
+     });
 
      describe('New Feed Selection', function() {
        /* TODO: Write a test that ensures when a new feed is loaded
