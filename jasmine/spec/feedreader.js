@@ -45,8 +45,52 @@ $(function() {
 
 
     describe('The menu', function() {
-       it('menu is hidden by default', function() {
-         expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the right border of the side menu is at 0, which means the menu is not visible.
+      it('menu is hidden by default', function() {
+        expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the right border of the side menu is at 0, which means the menu is not visible.
+      });
+
+      describe("Menu icon click event (menu hidden)", function() {
+
+        beforeEach(function(done) {
+          document.getElementsByClassName('menu-icon-link')[0].click();
+          // we wait 0.22s before calling done().
+          // Although the transition should be finished in 0.2s,
+          // however, there may be a delay, so we give some flexibility to it.
+          setTimeout(function () {
+            done();
+          }, 220);
+        });
+
+       it('menu changes visibility when the menu icon is clicked', function(done) {
+           expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().left).toBe(0);  // ensures the left border of the side menu is at 0, which means the menu is visible.
+           done();
+
+           document.getElementsByClassName('menu-icon-link')[0].click();
+           setTimeout(function () {
+             done();
+           }, 220);
+
+         });
+
+         describe("Menu icon click event (menu visible)", function() {
+
+           // the menu is visible by the click in parent level, now we click it once more time
+           beforeEach(function(done) {
+             document.getElementsByClassName('menu-icon-link')[0].click();
+             // we wait 0.22s before calling done().
+             // Although the transition should be finished in 0.2s,
+             // however, there may be a delay, so we give some flexibility to it.
+             setTimeout(function () {
+               done();
+             }, 220);
+           });
+
+           it('menu changes visibility when the menu icon is clicked', function(done) {
+               expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the left border of the side menu is at 0, which means the menu is visible.
+               done();
+             });
+        });
+
        });
 
        /* TODO: Write a test that ensures the menu changes
