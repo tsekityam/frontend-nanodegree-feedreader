@@ -45,11 +45,9 @@ $(function() {
 
 
     describe('The menu', function() {
-      /* TODO: Write a test that ensures the menu element is
-       * hidden by default. You'll have to analyze the HTML and
-       * the CSS to determine how we're performing the
-       * hiding/showing of the menu element.
-       */
+       it('menu is hidden by default', function() {
+         expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);  // ensures the right border of the side menu is at 0, which means the menu is not visible.
+       });
 
        /* TODO: Write a test that ensures the menu changes
         * visibility when the menu icon is clicked. This test
