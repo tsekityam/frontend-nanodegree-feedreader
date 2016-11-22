@@ -50,53 +50,32 @@ $(function() {
       expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().right).toBe(0);
     });
 
-    describe("Menu icon click event (menu hidden)", function() {
+    it("menu visibility changes when menu icon clicked", function() {
+      var $menu = $('.slide-menu');
 
-      beforeEach(function(done) {
-        var $menuIconLink = $('.menu-icon-link');
-        if ($menuIconLink.size() > 0) {
-          $menuIconLink[0].click();
-        }
-        // we wait 0.3s before calling done().
-        // Although the transition should be finished in 0.2s,
-        // however, there may be a delay, so we give some flexibility to it.
-        setTimeout(function () {
-          done();
-        }, 300);
-      });
+      var originalTransition = $menu.css('transition'); // store the current transition, for reset it later
+      $menu.css('transition', 'all 0s ease 0s');  // remove the transition
 
-      it('menu changes visibility when the menu icon is clicked', function(done) {
-        // ensures the left border of the side menu is at 0, which means the menu is visible.
-        expect(document.getElementsByClassName('slide-menu')[0].getBoundingClientRect().left).toBe(0);
-        done();
-      });
-    });
+      // click the menu icon
+      var $menuIconLink = $('.menu-icon-link');
+      if ($menuIconLink.size() > 0) {
+        $menuIconLink[0].click();
+      }
+      // see if the menu is visible or not
+      if ($menu.size() > 0) {
+        expect($menu[0].getBoundingClientRect().left).toBe(0);
+      }
 
-    describe("Menu icon click event (menu visible)", function() {
+      // click the menu icon again
+      if ($menuIconLink.size() > 0) {
+        $menuIconLink[0].click();
+      }
+      // see if the menu is hidden or not
+      if ($menu.size() > 0) {
+        expect($menu[0].getBoundingClientRect().right).toBe(0);
+      }
 
-      // the menu is visible by the click in previous test suite, now we click it once more time,
-      // see if the menu will be hidden again or not
-      beforeEach(function(done) {
-        var $menuIconLink = $('.menu-icon-link');
-        if ($menuIconLink.size() > 0) {
-          $menuIconLink[0].click();
-        }
-        // we wait 0.3s before calling done().
-        // Although the transition should be finished in 0.2s,
-        // however, there may be a delay, so we give some flexibility to it.
-        setTimeout(function () {
-          done();
-        }, 300);
-      });
-
-      it('menu changes visibility when the menu icon is clicked', function(done) {
-        var $slideMenu = $('.slide-menu');
-        if ($slideMenu.size() > 0) {
-           // ensures the left border of the side menu is at 0, which means the menu is visible.
-          expect($slideMenu[0].getBoundingClientRect().right).toBe(0);
-        }
-        done();
-      });
+      $menu.css('transition', originalTransition);  // restore the original transitions
     });
   });
 
