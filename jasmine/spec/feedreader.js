@@ -84,9 +84,7 @@ $(function() {
      // the menu is visible by the click in parent level, now we click it once more time
      beforeEach(function(done) {
        if (allFeeds.length > 0) {
-         loadFeed(0, function() {
-           done();
-         });
+         loadFeed(0, done);
        }
      });
 
@@ -106,9 +104,7 @@ $(function() {
       entries = container.find('.entry');
       if (entries.size() > 0) {
         originalFirstEntry = container.find('.entry')[0];
-        loadFeed(0, function() {
-          done();
-        });
+        loadFeed(0, done);
       }
    });
 
