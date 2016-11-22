@@ -117,7 +117,7 @@ $(function() {
       if (entries.size() > 0) {
         // if the feeds from the 2nd source is loaded,
         // then we should have a feed with url different from what we saved
-        expect(entries[0].toString()).toBe(originalFirstEntryUrl);
+        expect(entries[0].toString()).not.toBe(originalFirstEntryUrl);
       }
       done();
     });
