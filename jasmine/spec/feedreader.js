@@ -89,7 +89,7 @@ $(function() {
      });
 
      it('at least a single .entry element within the .feed container', function(done) {
-       expect($('.feed').find('.entry').size()).toBeGreaterThan(0);
+       expect($('.feed .entry').size()).toBeGreaterThan(0);
        done();
      });
   });
