@@ -95,23 +95,29 @@ $(function() {
   });
 
   describe('New Feed Selection', function() {
-    var originalFirstEntry,
-        entries,
-        container = $('.feed');
+    var originalFirstEntryUrl,
+        entries;
 
-    // the menu is visible by the click in parent level, now we click it once more time
     beforeEach(function(done) {
-      entries = container.find('.entry');
-      if (entries.size() > 0) {
-        originalFirstEntry = container.find('.entry')[0];
-        loadFeed(0, done);
-      }
+
+      // we load the feed from the 1st source
+      loadFeed(0, function() {
+        entries = $('.feed .entry-link');
+        if (entries.size() > 0) {
+          // save the url of the first feed from the 1st source
+          originalFirstEntryUrl = entries[0].toString();
+          // we load the feed from another source
+          loadFeed(1, done);
+        }
+      });
    });
 
     it('content actually changes', function(done) {
-      entries = container.find('.entry');
+      entries = $('.feed .entry-link');
       if (entries.size() > 0) {
-        expect(entries[0]).not.toBe(originalFirstEntry);
+        // if the feeds from the 2nd source is loaded,
+        // then we should have a feed with url different from what we saved
+        expect(entries[0].toString()).toBe(originalFirstEntryUrl);
       }
       done();
     });
